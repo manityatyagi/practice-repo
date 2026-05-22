@@ -43,9 +43,6 @@ jobs:
          with:
             name: backend-app
 
-       - name: Create file in the directory
-         run: touch backend/server.js 
-
        - name: Add code to the server.js file
          run: |
            cat <<EOF> server.js
