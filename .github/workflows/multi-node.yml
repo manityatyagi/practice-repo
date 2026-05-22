@@ -1,0 +1,63 @@
+name: Multi-Node Workflow
+
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+        - "main"
+
+jobs:
+  first-job:
+     runs-on: ubuntu-latest
+     steps:
+        - name: Install the dependencies
+          uses: actions/setup-node@v4
+          with:
+             node-version: 20
+
+        - name: Verify the Installation of Nodejs and Npm 
+          run: |
+            node -v
+            npm -v
+
+        - name: Create a directory and initialize the node backend
+          run: |
+            mkdir -p backend
+            cd backend 
+            npm init -y
+
+        - name: Install the packages
+          run: |
+            npm install express
+
+  second-job:
+     runs-on: ubuntu-latest
+     needs: first-job
+
+     steps:
+       - name: Create file in the directory
+         run: touch server.js 
+
+       - name: Add code to the server.js file
+         run: |
+           vim <<EOF> server.js
+           const express = require("express");
+
+           const app = expres();
+           const PORT = process.env.PORT ?? 6000;
+
+           app.get("/", (req, res) => {
+             res.json({
+                message: "Server is running"
+             });
+           })
+
+           app.listen(PORT, () => {
+              console.log(`Server is up and running on port ${PORT}`);
+           })
+            
+           EOF
+ 
+       - name: Run the App
+         run: node server.js 
+        
