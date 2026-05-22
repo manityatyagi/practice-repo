@@ -58,6 +58,12 @@ jobs:
             
            EOF
  
+       - name: Echo if failure
+         if: failure()
+         run: |
+          echo "Job Failed!!!"
+            
        - name: Run the App
-         run: node server.js 
+         run: node server.js
+          
         
