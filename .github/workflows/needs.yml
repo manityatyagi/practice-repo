@@ -1,0 +1,41 @@
+name: Needs (concept)
+
+on: 
+  workflow_dispatch:
+
+jobs:
+   setup-env:
+     runs-on: ubuntu-latest
+     
+     steps:       
+       - name: Install Nodejs and Npm
+         uses: actions/setup-node@v4
+         with: 
+           node-version: 20
+      
+       - name: Check Nodejs and Npm version
+         id: check_version
+         run: |
+           node -v
+           npm -v
+ 
+   run-code:
+     runs-on: ubuntu-latest
+     needs: setup-env
+
+     steps: 
+      - name: Create a file
+        run: touch index.js
+        
+      - name: Write js code in the index.js
+        run: |
+          cat <<EOF> index.js
+          function getTime() {
+            return new Date().toString();
+          }
+
+          console.log(getTime());
+          EOF
+
+      - name: Run the index.js
+        run: node index.js
