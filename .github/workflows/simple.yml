@@ -18,4 +18,4 @@ jobs:
          python-version: "3.12"
         
      - name: Print the Message
-       run: python -c "print("Hello World!")" 
+       run: python -c "print('Hello World!')" 
