@@ -45,7 +45,7 @@ jobs:
 
        - name: Add code to the server.js file
          run: |
-           cat <<EOF> server.js
+           cat <<EOF> backend/server.js
            const express = require("express");
 
            const app = express();
