@@ -48,7 +48,7 @@ jobs:
            cat <<EOF> server.js
            const express = require("express");
 
-           const app = expres();
+           const app = express();
            const PORT = process.env.PORT ?? 6000;
 
            app.get("/", (req, res) => {
