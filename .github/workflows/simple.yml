@@ -1,0 +1,18 @@
+name: Simple Workflow
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: CheckOut Code
+       uses: action/checkout@v4
+
+     - name: Print Message
+       run: |
+         print("Hello World!")
+       shell: python 
