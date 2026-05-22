@@ -7,7 +7,7 @@ const PORT = process.env.PORT ?? 6500;
 app.get("/", (req, res) => {
     res.json({
         success: true,
-        message: "Server is running"
+        message: "Server(v1) is running"
     });
 })
 
