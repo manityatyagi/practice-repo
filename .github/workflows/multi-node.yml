@@ -40,7 +40,7 @@ jobs:
 
        - name: Add code to the server.js file
          run: |
-           vim <<EOF> server.js
+           cat <<EOF> server.js
            const express = require("express");
 
            const app = expres();
