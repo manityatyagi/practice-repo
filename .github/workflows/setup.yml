@@ -1,0 +1,24 @@
+name: Setup Different Packages
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  setup-packages:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Nodjs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+
+      - name: Verify the Setup
+        run: |
+          node -v   
+          npm -v
+      
