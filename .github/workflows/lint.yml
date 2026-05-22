@@ -1,0 +1,30 @@
+name: Linting Workflow
+
+on:
+  workflow_dispatch:
+#   push:
+#     branches: 
+#         - "main"
+
+jobs:
+  build:
+    name: lint
+    runs-on: ubuntu-latest
+
+    permissions:
+        contents: read
+        packages: read
+        issues: write
+        pull-requests: write
+        statuses: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Super-linter
+        uses: super-linter/super-linter@v8.6.0
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: true
